@@ -11,7 +11,9 @@ app = FastAPI(title="Smart Home Rule Engine")
 
 @app.on_event("startup")
 def _startup() -> None:
-    init_services()
+    from app import deps
+    if deps._storage is None:  # 测试可提前注入临时存储
+        init_services()
 
 
 @app.exception_handler(DomainError)
