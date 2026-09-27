@@ -81,7 +81,7 @@ class RuleTrigger(BaseModel):
     device_id: str
     property: str
     op: Literal["eq", "ne", "gt", "lt"] = "eq"
-    value: Any
+    value: Any = None
 
 
 class RuleAction(BaseModel):
