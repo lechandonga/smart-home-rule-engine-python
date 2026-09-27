@@ -30,4 +30,12 @@ API_KEYS: dict[str, Caller] = {
 
 
 def authenticate(api_key: str | None) -> Caller:
-    raise NotImplementedError
+    """按 API key 识别调用方；未知/缺失 key 一律拒绝。"""
+    from .errors import UnauthorizedError
+
+    if not api_key:
+        raise UnauthorizedError("缺少 API key（请求头 X-Api-Key）")
+    caller = API_KEYS.get(api_key)
+    if caller is None:
+        raise UnauthorizedError("未知 API key", detail={"api_key": api_key[:4] + "***"})
+    return caller
