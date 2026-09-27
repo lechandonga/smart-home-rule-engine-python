@@ -4,7 +4,7 @@ from fastapi.responses import JSONResponse
 
 from app.deps import init_services
 from app.errors import DomainError
-from app.routers import devices, rules
+from app.routers import audit, devices, rules
 
 app = FastAPI(title="Smart Home Rule Engine")
 
@@ -25,6 +25,7 @@ def domain_error_handler(_: Request, exc: DomainError) -> JSONResponse:
 
 app.include_router(devices.router, prefix="/devices")
 app.include_router(rules.router, prefix="/rules")
+app.include_router(audit.router, prefix="/audit")
 
 
 @app.get("/")
