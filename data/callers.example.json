@@ -1,0 +1,5 @@
+[
+  {"caller_id": "admin", "name": "Home Admin", "role": "admin", "allowed_devices": []},
+  {"caller_id": "alice", "name": "Alice", "role": "user", "allowed_devices": ["light-living", "sensor-hall", "switch-fan"]},
+  {"caller_id": "bob", "name": "Bob", "role": "user", "allowed_devices": ["lock-door"]}
+]
